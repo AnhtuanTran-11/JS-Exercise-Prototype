@@ -58,7 +58,7 @@ function Airplane(name) {
  Person.prototype.toString = function(name, age) {
   return (this.name + this.age);
  }
- 
+
   /*
     TASK 2
       - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -73,11 +73,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
-  }
-  
-  
+ function Car(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+ }
+ Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+ }
   /*
     TASK 3
       - Write a Baby constructor subclassing Person.
@@ -85,18 +89,24 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
-  }
+ function Baby(name, age, favoriteToy) {
+   this.name = name;
+   this.age = age;
+   this.favoriteToy = favoriteToy;
+ }
+ Baby.prototype = Object.create(Person.prototype);
+ Baby.prototype.play = function(favoriteToy){
+  return (`Playing with ${this.favoriteToy}`);
+ }
  
-  
+ 
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Implicit binding occurs when dot notation is used to invoke a function.
+    2. Explicit binding of this occurs when .call(), .apply(), or .bind() are used on a function.
+    3. Default binding occurs when a function is invoked and is bound within its object context.
+    4. New binding occurs with the new operator and empty object is created inheriting the prototype of the function.
   */
   
   
